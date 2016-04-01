@@ -3,8 +3,11 @@
 # Part of the Exploratory Data Analysis
 # source data:  UC Irvine Machine Learning Repository, “Individual household electric power consumption Data Set”
 
-# read in data (assumed to be in folder /data)
-elec = read.table("./data/household_power_consumption.txt", sep=";", header=TRUE, na.strings=c("?"),as.is = c("Date","Time"))
+# donwload and load in data
+temp <- tempfile()
+download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip",temp)
+elec = read.table(unz(temp, "household_power_consumption.txt"), sep=";", header=TRUE, na.strings=c("?"),as.is = c("Date","Time"))
+unlink(temp)
 
 # select two days 
 elecTwoDays <- subset(elec, Date == "1/2/2007" | Date == "2/2/2007" )

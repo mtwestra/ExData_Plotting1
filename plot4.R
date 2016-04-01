@@ -1,5 +1,11 @@
-# Plots global active power of a household over a two day period
-# Part of the Exploratory Data Analysis
+# Creates a PNG plot of electricity usage of a household over a two day period on 1-2-2007 and 2-2-2007
+# Figures inluced are:
+# * datetime versus global active power
+# * datetime versus submetering
+# * datetime versus voltage
+# * datatime versus Global reactive power
+#
+# Part of the Exploratory Data Analysis Coursera course
 # source data:  UC Irvine Machine Learning Repository, “Individual household electric power consumption Data Set”
 
 # read in data (assumed to be in folder /data)
@@ -11,7 +17,7 @@ elecTwoDays <- subset(elec, Date == "1/2/2007" | Date == "2/2/2007" )
 # combine date and time into single POSIXct datetime column
 elecTwoDays <- within(elecTwoDays,{datetime = as.POSIXct(paste(elecTwoDays$Date, elecTwoDays$Time), format="%d/%m/%Y %H:%M:%S")})
 
-# create histogram plot
+# open PNG file
 png(filename = "plot4.png",width = 480, height = 480)
 
 # specify grid of 2 by 2, to be filled col first
